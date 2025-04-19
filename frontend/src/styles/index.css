@@ -1,68 +1,176 @@
+/*  global.css */
+/* ========== Root Theme Variables ========== */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --background: #f9fafb;
+  --foreground: #1e293b;
+  --accent: #3b82f6;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --code-bg: #f1f5f9;
+  --code-color: #0f172a;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --radius: 0.75rem;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f1117;
+    --foreground: #f1f5f9;
+    --accent: #60a5fa;
+    --muted: #94a3b8;
+    --border: #2c2f36;
+    --code-bg: #1e293b;
+    --code-color: #e2e8f0;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
 }
 
 body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
   margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-md);
+  color: var(--foreground);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.auth-wrapper {
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  padding: var(--space-lg);
+  background-color: var(--background);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.auth-card {
+  width: 100%;
+  max-width: 860px;
+  height: 500px;
+  display: flex;
+  background-color: var(--code-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: relative;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.auth-illustration, .auth-form-wrapper {
+  flex: 1;
+  padding: var(--space-xl);
+  transition: transform 0.6s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-illustration {
+  background-image: url("https://img.freepik.com/free-photo/clipboard-with-ribbons-candles_23-2147628613.jpg");
+  background-size: cover;
+  background-position: center;
+  border-right: 1px solid var(--border);
+  color: var(--background);
+  text-align: center;
+}
+
+.auth-illustration h2,
+.auth-illustration p {
+  color: var(--background);
+  margin-bottom: var(--space-md);
+}
+
+.auth-form-wrapper {
+  background: var(--background);
+  transform: translateX(0);
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.auth-form input {
+  padding: var(--space-sm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 1rem;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.auth-form button {
+  background-color: var(--accent);
+  color: white;
+  padding: var(--space-sm);
+  border: none;
+  border-radius: var(--radius);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: var(--shadow);
+  transition: background 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.auth-form button:hover {
+  background-color: #2563eb;
+}
+
+.auth-toggle {
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: var(--space-sm);
+  text-align: center;
+}
+
+/* Sliding Animation States */
+.slide-login .auth-form-wrapper {
+  transform: translateX(0);
+}
+.slide-login .auth-illustration {
+  transform: translateX(0);
+}
+.slide-signup .auth-form-wrapper {
+  transform: translateX(-100%);
+}
+.slide-signup .auth-illustration {
+  transform: translateX(100%);
 }
